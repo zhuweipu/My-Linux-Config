@@ -62,9 +62,12 @@ sudo apt install neovim
 ```bash
 sudo apt install git
 
-git config --global user.name "zhuweipu"
+git config --global user.name "your-name"
 
-git config --global user.email 919478753@qq.com
+git config --global user.email your-email
+
+# 冲突解决方式为 merge 
+git config pull.rebase false
 
 # 指定冲突编辑器
 git config --global core.editor vim
@@ -78,7 +81,7 @@ git config --list
 
 # 到GitHub申请一个token，替换一下
 # github -> settings -> developer settings -> personal access tokens -> generate new token
-echo "https://zhuweipu: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@github.com" >> ~/.git-credentials
+echo "https://zhuweipu:your-token-here" >> ~/.git-credentials
 ```
 
 #### 中文输入法
