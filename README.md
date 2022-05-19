@@ -86,9 +86,92 @@ echo "https://zhuweipu:your-token-here" >> ~/.git-credentials
 
 #### 中文输入法
 
+[Linux的输入法框架原理](https://zhuanlan.zhihu.com/p/384171267)
+
+常见的中文输入法框架 ibus（gnome自带）、fcitx
+
+常见的中文输入引擎[google-pinyin](https://wiki.archlinux.org/title/IBus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))、sogou-pinyin、[rime](https://wiki.archlinux.org/title/Rime_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+
+如果使用ibus 加上 rime
+```bash
+sudo apt install ibus-rime
 ```
 
+如果使用fcitx 加上 fcitx-rime
+```bash
+# 默认还是4
+sudo apt install fcitx
+# 最新版本是5
+sudo apt install fcitx-5
+
+sudo apt install fcitx-rime
 ```
+rime需要再安装输入方案(全拼、双拼)
+
+Settings -> Manage Installed Languages -> keyboard input method system 切换输入法框架
+
+ibus使用命令行 ibus-setup 启动配置
+
+fcitx 使用 fcitx configuration 配置
+
+
+sogou-pinyin 只支持fcitx，下载deb包安装
+```bash
+sudo apt install ./sogou.deb
+```
+
+#### 科学上网
+
+SSR V2RAY
+
+一个 V2Ray 进程可并发支持多个入站和出站协议，每个协议可独立工作。
+
+官方有bash安装的教程[v2ray官网](https://www.v2ray.com/chapter_00/install.html)
+```
+bash <(curl -L -s https://install.direct/go.sh)
+```
+
+此脚本会自动安装以下文件：
+
+- /usr/bin/v2ray/v2ray：V2Ray 程序；
+- /usr/bin/v2ray/v2ctl：V2Ray 工具；
+- /etc/v2ray/config.json：配置文件；
+- /usr/bin/v2ray/geoip.dat：IP 数据文件
+- /usr/bin/v2ray/geosite.dat：域名数据文件
+
+ 推荐预编译版本，解压任意地方即可，软件可设置路径
+
+[v2ray-core prebuilt](https://github.com/v2ray/dist)
+
+下载v2ray-linux-64.zip
+
+使用v2ray协议节点的桌面工具和应用程序有 qv2ray(目前已经不更新)，clash、v2rayN、v2rayA
+
+v2rayA使用浏览器web作为配置界面
+
+[v2rayA](https://github.com/v2rayA/v2rayA)
+
+预编译版本
+
+[v2raya_linux_x64_1.5.7 prebuilt](https://github.com/v2rayA/v2rayA/releases)
+
+
+```bash
+sudo ./v2raya_linux_x64_1.5.7 --v2ray-bin ~/v2raya/v2ray-linux-64/v2ray --log-level trace
+```
+
+直接执行，参数--v2ray-bin 指定v2ray core的路径
+
+
+配置
+
+浏览器输入 127.0.0.1:2017
+
+![v2raya配置](img/v2raya)
+
+导入 节点连接或者订阅的v2ray地址
+
+设置 -> 透明代理/系统代理选择 代理模式(全局、代理、关闭)
 
 
 #### 开发必备
