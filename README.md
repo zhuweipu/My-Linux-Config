@@ -167,7 +167,7 @@ sudo ./v2raya_linux_x64_1.5.7 --v2ray-bin ~/v2raya/v2ray-linux-64/v2ray --log-le
 
 浏览器输入 127.0.0.1:2017
 
-![v2raya配置](img/v2raya)
+![v2raya配置](img/v2raya.png)
 
 导入 节点连接或者订阅的v2ray地址
 
@@ -235,7 +235,7 @@ N: Updating from such a repository can't be done securely, and is therefore disa
 
 [源码安装](https://blog.csdn.net/weixin_42565457/article/details/122530444?spm=1001.2014.3001.5501)
 
-![安装过程](img/source-install)
+![安装过程](img/source-install.png)
 
 --prefix后面接的路径表示这个软件将要安装到哪个目录去，如果没有指定--prefix=/path这个参数，通常默认为/usr/local。本人推荐安装位置为 /usr/local/XXX，XXX为自己的实际目录，这样会方便以后的管理。
 
