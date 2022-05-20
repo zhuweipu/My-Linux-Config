@@ -181,4 +181,89 @@ sudo ./v2raya_linux_x64_1.5.7 --v2ray-bin ~/v2raya/v2ray-linux-64/v2ray --log-le
 sudo apt install build-essential
 ```
 
+##### 浏览器
 
+喜欢用edge浏览器的侧边栏
+
+```bash
+sudo apt install microsoft-edge-stable
+```
+
+Chrome浏览器
+
+```bash
+sudo apt install google-chrome-stable
+```
+
+#### 一些软件安装的tips
+
+一切软件都最好从源安装，如果不知道安装包，可以搜索。
+
+比如搜索edge浏览器
+
+```bash
+sudo apt search edge | grep -2 browser
+```
+
+如果需要从deb包安装，有两种方式[dpkg和apt](https://blog.csdn.net/weixin_42565457/article/details/122689733)
+
+使用 dpkg 时，已经解决掉了软件安装过程中的大量问题，但是当依赖关系不满足时，仍然需要手动解决，而 apt 能够自动解决依赖问题。
+
+```bash
+sudo dpkg -i xxx.deb
+
+sudo apt install ./xxx.deb
+```
+
+通过deb包安装的软件会在 /etc/apt/sources.list.d安装第三方软件的源，然后因为单个软件的签名不通过导致apt update失败，整个系统的软件都无法更新
+
+```
+Err:6 https://packages.microsoft.com/repos/edge stable InRelease
+
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EB3E94ADBE1229CF
+
+W: GPG error: https://packages.microsoft.com/repos/edge stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EB3E94ADBE1229CF
+
+E: The repository 'https://packages.microsoft.com/repos/edge stable InRelease' is not signed.
+
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+```
+
+进入/etc/apt/sources.list.d找到软件对应的list删除即可
+
+#### 源码安装软件
+
+[源码安装](https://blog.csdn.net/weixin_42565457/article/details/122530444?spm=1001.2014.3001.5501)
+
+![安装过程](img/source-install)
+
+--prefix后面接的路径表示这个软件将要安装到哪个目录去，如果没有指定--prefix=/path这个参数，通常默认为/usr/local。本人推荐安装位置为 /usr/local/XXX，XXX为自己的实际目录，这样会方便以后的管理。
+
+源码包安装方式的man文件默认保存在/usr/local/man或/usr/local/share/man中，如果你的安装路径自定义为如/usr/local/XXX，则man文件则一般是在/usr/local/XXX/share/man中。此时如果你想要通过man来查看你所安装软件的man手册，则需要自行修改man的路径配置文件（可能是man.config或者manpath.config）。需要在相应位置添加如下一行：
+
+```
+MANPATH    /usr/local/XXX/share/man
+```
+
+通过源码包安装的软件，当你想要卸载的时候，只需要把整个安装路径删除掉就行了，100%卸载，不会像windows那样经常会残留那多注册表之类的垃圾。
+
+根据你的安装时候选择的安装路径，源码包的卸载又分为两种情况：
+1）如果你安装时候指定的路径为： --prefix=/usr/local/XXX，那么卸载的时候只需要把XXX这个文件夹删除即可，因为该软件安装的所有文件都是放置在XXX这个文件夹。
+2）但如果你进行源码包安装的时候没有指定位置(默认值一般为/usr/local/)，或指定的位置为–prefix=/usr/local，则这时候你安装软件生成的文件将分别存储在/usr/local/里面的bin、lib或ect等目录中，这时候卸载起来就相对麻烦一点了。
+
+
+#### 一些小工具
+
+**截图**
+
+图片存储在Picture目录下
+```bash
+sudo apt install gnome-screenshot
+gnome-screenshot -a
+```
+
+**自定义快捷键**
+
+```bash
+Settings -> Keyboard -> View and customize Shortcuts -> Custom Shortcuts
+```
