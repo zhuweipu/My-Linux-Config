@@ -267,3 +267,5 @@ gnome-screenshot -a
 ```bash
 Settings -> Keyboard -> View and customize Shortcuts -> Custom Shortcuts
 ```
+
+#### neovim
