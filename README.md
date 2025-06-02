@@ -173,15 +173,6 @@ sudo ./v2raya_linux_x64_1.5.7 --v2ray-bin ~/v2raya/v2ray-linux-64/v2ray --log-le
 
 设置 -> 透明代理/系统代理选择 代理模式(全局、代理、关闭)
 
-#### VMware-Tools
-
-vmware 在虚拟机和宿主机复制粘贴
-
-```bash
-sudo apt install open-vm-tools-desktop cloud-init
-reboot
-```
-
 #### 开发必备
 
 ```bash
@@ -277,3 +268,22 @@ Settings -> Keyboard -> View and customize Shortcuts -> Custom Shortcuts
 ```
 
 #### neovim
+
+### VMware
+
+#### VMware-Tools
+
+vmware 在虚拟机和宿主机复制粘贴
+
+```bash
+sudo apt install open-vm-tools-desktop cloud-init
+reboot
+```
+
+#### 共享主机代理
+
+虚拟机设置 -> 网络适配器 -> 自定义 -> VMnet8 (NAT模式)
+
+Ubuntu Setting -> Network-> proxy -> Manual -> HTTP proxy / HTTPs proxy 设置为 Windows中 VMnet8 IP地址，端口号为科学上网软件（如Clash）端口号
+
+Clash设置 -> 主页 -> 允许局域网
