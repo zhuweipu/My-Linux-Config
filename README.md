@@ -66,21 +66,19 @@ git config --global user.name "your-name"
 
 git config --global user.email your-email
 
-# 冲突解决方式为 merge 
+# Conflict resolution merge 
 git config pull.rebase false
-
-# 指定冲突编辑器
 git config --global core.editor vim
 
-# 现在不能用密码push，需要配置token
+# Apply a token as password
+# github -> settings -> developer settings -> personal access tokens -> Select Scopes (at least choose repo) -> generate new token
+# your token would be like abc_defghijklmn123456789
+# Use your token as password when it promt to input passsword
+
+# or store token in a file
 git config --global credential.helper  'store --file ~/.git-credentials'
-
-# 所有配置会写入 ~/.gitconfig 所以备份这个文件可
-# 列出配置情况看看
 git config --list
-
-# 到GitHub申请一个token，替换一下
-# github -> settings -> developer settings -> personal access tokens -> generate new token
+# https://zhuweipu: is the domain of your own github site.
 echo "https://zhuweipu:your-token-here" >> ~/.git-credentials
 ```
 
