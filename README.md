@@ -70,16 +70,15 @@ git config --global user.email your-email
 git config pull.rebase false
 git config --global core.editor vim
 
+# store token in a file
+git config --global credential.helper  'store --file ~/.git-credentials'
+git config --list
+
 # Apply a token as password
 # github -> settings -> developer settings -> personal access tokens -> Select Scopes (at least choose repo) -> generate new token
 # your token would be like abc_defghijklmn123456789
 # Use your token as password when it promt to input passsword
-
-# or store token in a file
-git config --global credential.helper  'store --file ~/.git-credentials'
-git config --list
-# https://zhuweipu: is the domain of your own github site.
-echo "https://zhuweipu:your-token-here" >> ~/.git-credentials
+echo "https://username:your-token-here@github.com" >> ~/.git-credentials
 ```
 
 #### 中文输入法
