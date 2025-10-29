@@ -80,6 +80,7 @@ git config --list
 # Use your token as password when it promt to input passsword
 echo "https://username:your-token-here@github.com" >> ~/.git-credentials
 ```
+<img width="1712" height="1332" alt="image" src="https://github.com/user-attachments/assets/502a618d-5279-485b-9ace-6103a4917f8c" />
 
 #### 中文输入法
 
