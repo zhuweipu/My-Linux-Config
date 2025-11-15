@@ -74,49 +74,55 @@ git config --global core.editor vim
 git config --global credential.helper  'store --file ~/.git-credentials'
 git config --list
 
-# Apply a token as password
-# github -> settings -> developer settings -> personal access tokens -> Select Scopes (at least choose repo) -> generate new token
-# your token would be like abc_defghijklmn123456789
-# Use your token as password when it promt to input passsword
 echo "https://username:your-token-here@github.com" >> ~/.git-credentials
 ```
+
+**Apply a token as password**
+github -> settings -> developer settings -> personal access tokens -> Select Scopes (at least choose repo) -> generate new token
 <img width="1712" height="1332" alt="image" src="https://github.com/user-attachments/assets/502a618d-5279-485b-9ace-6103a4917f8c" />
 
 #### 中文输入法
 
-[Linux的输入法框架原理](https://zhuanlan.zhihu.com/p/384171267)
-
-常见的中文输入法框架 ibus（gnome自带）、fcitx
-
-常见的中文输入引擎[google-pinyin](https://wiki.archlinux.org/title/IBus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))、sogou-pinyin、[rime](https://wiki.archlinux.org/title/Rime_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
-
-如果使用ibus 加上 rime
 ```bash
-sudo apt install ibus-rime
+sudo apt-get install language-pack-zh-hans ibus ibus-libpinyin ibus-rime
 ```
 
-如果使用fcitx 加上 fcitx-rime
-```bash
-# 默认还是4
-sudo apt install fcitx
-# 最新版本是5
-sudo apt install fcitx-5
+在设置界面（Settings）---左边菜单点击键盘（Keyboard）---右边Input Sources中点击“Add Input Source”
 
-sudo apt install fcitx-rime
 ```
-rime需要再安装输入方案(全拼、双拼)
+cd ~/.config/ibus/rime/
+vim default.custom.yaml
 
-Settings -> Manage Installed Languages -> keyboard input method system 切换输入法框架
+patch:
+  switcher:
+    hotkeys:
+      - "Control+grave"            # 输入选项菜单 Control + `（键盘上感叹号!左边的那个按键）
 
-ibus使用命令行 ibus-setup 启动配置
+  menu:
+    page_size: 7                   # 候选词数量
 
-fcitx 使用 fcitx configuration 配置
+  schema_list:
+    - schema: double_pinyin_flypy  # 使用小鹤双拼
 
+vim double_pinyin_flypy.custom.yaml
 
-sogou-pinyin 只支持fcitx，下载deb包安装
-```bash
-sudo apt install ./sogou.deb
+patch:
+"translator/dictionary": luna_pinyin.extended # 使用额外的词库，对应的文件是 luna_pinyin.extended.dict.yaml
+switches:
+- name: ascii_mode
+states: ["中文", "西文"]
+- name: full_shape
+states: ["半角", "全角"]
+- name: simplification
+reset: 1                  # 默认简体
+states: ["漢字", "汉字"]
+- name: ascii_punct
+states: ["。，", "．，"]
 ```
+
+在系统托盘输入法中左击 RIME 图标，在弹出菜单中选“部署”即可
+
+[RIME 输入法小鹤双拼配置指南](https://whatacold.io/zh-cn/blog/2022-10-04-rime-double-pinyin-flypy)
 
 #### 科学上网
 
